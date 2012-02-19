@@ -630,8 +630,6 @@
     <string name="ringtone_title" msgid="6374978286202084684">"Telefon zil sesi"</string>
     <string name="vibration_title">Telefon titreşimi</string>
     <string name="vibrate_on_ring_title" msgid="9197564612065258960">"Çalarken titret"</string>
-    <string name="dtmf_tone_enable_title">Tuşlara basınca ses çıksın</string>
-    <string name="preference_category_ringtone">Zil sesi</string>
     <string name="national_roaming">Veri dolaşımı</string>
     <string name="national_roaming_enable">Dolaşım esnasında veri hizmetine bağlan</string>
     <string name="national_roaming_disable">Dolaşım esnasında veri hizmetine bağlanma</string>
@@ -646,4 +644,8 @@
     <string name="vibrate_call_waiting_sum">Bekleyen arama olduğunda titrer</string>
     <string name="noise_suppression_title">Gürültü önleyici</string>
     <string name="noise_suppression_summary">Aramalar için gürültü önleyiciyi etkinleştirir</string>
+    <string name="dtmf_tone_enable_title">"Tuşlara basınca ses çıksın"</string>
+    <string name="preference_category_ringtone" msgid="5197960752529332721">"Zil sesi"</string>
+    <string name="perm_change_mobile_network">Şebeke değiştir (2G/3G)</string>
+    <string name="perm_change_mobile_network_desc">Bu ayar istediğiniz zaman 2G ve 3G arasında geçiş yapmanızı sağlar. 3G daha hızlıdır ama daha fazla pil tüketir ve ek olarak daha fazla ücret ödemenize sebep olabilir.</string>
 </resources>
