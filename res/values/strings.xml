@@ -1542,4 +1542,10 @@
     <string name="noise_suppression_summary">Enable noise suppression for calls</string>
 
     <string name="preference_category_ringtone">Ringtone &amp; Vibrate</string>
+
+    <!-- Reject calls listed as missed -->
+    <string name="reject_to_miss">Rejected calls are missed calls</string>
+    <string name="reject_to_miss_summary_on">Rejected calls are Missed calls in Log</string>
+    <string name="reject_to_miss_summary_off">Rejected calls are Received calls in Log</string>
+
 </resources>
