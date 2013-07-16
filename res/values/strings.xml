@@ -1869,4 +1869,9 @@
     <string name="exportAllcontatsSuccess">Succesfully exported all contacts to SIM </string>
     <string name="exportAllcontatsFailed"> Failed to export all contacts to SIM !!!</string>
     <string name="cursorError"> Cursor is not having proper data !!! </string>
+
+    <!-- Incoming call in background -->
+    <string name="bg_incall">Incoming call in background</string>
+    <string name="bg_incall_summary">Keep incoming call UI in background when screen is on, show notification and play ringtone only</string>
+
 </resources>
