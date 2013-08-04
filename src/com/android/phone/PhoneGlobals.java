@@ -72,7 +72,6 @@ import com.android.internal.telephony.PhoneFactory;
 import com.android.internal.telephony.TelephonyCapabilities;
 import com.android.internal.telephony.TelephonyIntents;
 import com.android.internal.telephony.cdma.TtyIntent;
-import com.android.internal.telephony.util.BlacklistUtils;
 import com.android.phone.common.CallLogAsync;
 import com.android.phone.OtaUtils.CdmaOtaScreenState;
 import com.android.server.sip.SipService;
@@ -173,6 +172,7 @@ public class PhoneGlobals extends ContextWrapper
     CallNotifier notifier;
     NotificationMgr notificationMgr;
     Ringer ringer;
+    Blacklist blackList;
     IBluetoothHeadsetPhone mBluetoothPhone;
     PhoneInterfaceManager phoneMgr;
     CallManager mCM;
@@ -494,8 +494,7 @@ public class PhoneGlobals extends ContextWrapper
 
             ringer = Ringer.init(this);
 
-            // Convert old blacklist to new format
-            Blacklist.migrateOldDataIfPresent(this);
+            blackList = new Blacklist(this);
 
             // before registering for phone state changes
             mPowerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
@@ -1568,8 +1567,7 @@ public class PhoneGlobals extends ContextWrapper
                 if (intent.getBooleanExtra(EXTRA_FROM_NOTIFICATION, false)) {
                     // Dismiss the notification that brought us here
                     notificationMgr.cancelBlacklistedCallNotification();
-                    BlacklistUtils.addOrUpdate(context, intent.getStringExtra(EXTRA_NUMBER),
-                            0, BlacklistUtils.BLOCK_CALLS);
+                    blackList.delete(intent.getStringExtra(EXTRA_NUMBER));
                 }
             }
         }

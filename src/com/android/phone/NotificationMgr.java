@@ -60,7 +60,6 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneBase;
 import com.android.internal.telephony.PhoneConstants;
 import com.android.internal.telephony.TelephonyCapabilities;
-import com.android.internal.telephony.util.BlacklistUtils;
 
 import java.util.ArrayList;
 
@@ -702,7 +701,7 @@ public class NotificationMgr implements CallerInfoAsyncQuery.OnQueryCompleteList
     }
 
     /* package */ void notifyBlacklistedCall(String number, long date, int matchType) {
-        if (!BlacklistUtils.isBlacklistNotifyEnabled(mContext)) {
+        if (!PhoneUtils.PhoneSettings.isBlacklistNotifyEnabled(mContext)) {
             return;
         }
 
@@ -711,15 +710,12 @@ public class NotificationMgr implements CallerInfoAsyncQuery.OnQueryCompleteList
                 + ", match type: " + matchType + ", date: " + date);
         }
 
-        // Keep track of the call, keeping list sorted from newest to oldest
+        // keep track of the call, keeping list sorted from newest to oldest
         mBlacklistedCalls.add(0, new BlacklistedCallInfo(number, date, matchType));
 
-        // Get the intent to open Blacklist settings if user taps on content ready
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.setClassName("com.android.settings", "com.android.settings.Settings$BlacklistSettingsActivity");
-        PendingIntent blSettingsIntent = PendingIntent.getActivity(mContext, 0, intent, 0);
+        PendingIntent blSettingsIntent = PendingIntent.getActivity(mContext,
+                0, new Intent(mContext, BlacklistSetting.class), 0);
 
-        // Start building the notification
         Notification.Builder builder = new Notification.Builder(mContext);
         builder.setSmallIcon(R.drawable.ic_block_contact_holo_dark)
                 .setContentIntent(blSettingsIntent)
@@ -735,10 +731,10 @@ public class NotificationMgr implements CallerInfoAsyncQuery.OnQueryCompleteList
         if (mBlacklistedCalls.size() == 1) {
             String message;
             switch (matchType) {
-                case BlacklistUtils.MATCH_PRIVATE:
+                case Blacklist.MATCH_PRIVATE:
                     message = mContext.getString(R.string.blacklist_notification_private_number);
                     break;
-                case BlacklistUtils.MATCH_UNKNOWN:
+                case Blacklist.MATCH_UNKNOWN:
                     message = mContext.getString(R.string.blacklist_notification_unknown_number, number);
                     break;
                 default:
@@ -746,7 +742,7 @@ public class NotificationMgr implements CallerInfoAsyncQuery.OnQueryCompleteList
             }
             builder.setContentText(message);
 
-            if (matchType != BlacklistUtils.MATCH_LIST) {
+            if (matchType != Blacklist.MATCH_LIST) {
                 addUnblockAction = false;
             }
         } else {
@@ -759,15 +755,15 @@ public class NotificationMgr implements CallerInfoAsyncQuery.OnQueryCompleteList
             Notification.InboxStyle style = new Notification.InboxStyle(builder);
 
             for (BlacklistedCallInfo info : mBlacklistedCalls) {
-                // Takes care of displaying "Private" instead of an empty string
-                String numberString = TextUtils.isEmpty(info.number)
+                // Takes care of displaying "Private" instead of "0000"
+                String numberString = Blacklist.PRIVATE_NUMBER.equals(info.number)
                         ? mContext.getString(R.string.blacklist_notification_list_private)
                         : info.number;
                 style.addLine(formatSingleCallLine(numberString, info.date));
 
                 if (!TextUtils.equals(number, info.number)) {
                     addUnblockAction = false;
-                } else if (info.matchType != BlacklistUtils.MATCH_LIST) {
+                } else if (info.matchType != Blacklist.MATCH_LIST) {
                     addUnblockAction = false;
                 }
             }

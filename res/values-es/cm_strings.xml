@@ -63,6 +63,13 @@
     <string name="blacklist_title">Lista negra</string>
     <string name="blacklist_summary_disabled">Deshabilitada</string>
     <string name="blacklist_summary">Las llamadas entrantes de los números en la lista negra serán bloqueadas</string>
+    <string name="blacklist_notify">Mostrar notificación</string>
+    <string name="blacklist_private_numbers_title">Números privados</string>
+    <string name="blacklist_private_numbers_summary">Bloquear llamadas entrantes de números privados</string>
+    <string name="blacklist_unknown_numbers_title">Números desconocidos</string>
+    <string name="blacklist_unknown_numbers_summary">Bloquear llamadas entrantes de números que no estén en la lista de contactos</string>
+    <string name="blacklist_regex_title">Permitir comodines</string>
+    <string name="blacklist_regex_summary">Usar \u00AB.\u00BB como comodín y \u00AB*\u00BB para repetición. Por ejemplo \u00AB123.*\u00BB bloqueará números que comiencen por 123 y \u00AB.*123.*\u00BB bloqueará números que contengan 123</string>
     <string name="add_blacklist_number">Añadir número de teléfono</string>
     <string name="add_to_blacklist">Añadir a la lista negra</string>
     <string name="add_to_blacklist_message">Las llamadas de %s serán bloqueadas</string>

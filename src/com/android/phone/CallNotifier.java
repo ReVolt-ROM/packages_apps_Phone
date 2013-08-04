@@ -32,7 +32,6 @@ import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaDisplayInf
 import com.android.internal.telephony.cdma.CdmaInformationRecords.CdmaSignalInfoRec;
 import com.android.internal.telephony.cdma.SignalToneUtil;
 import com.android.internal.telephony.gsm.SuppServiceNotification;
-import com.android.internal.telephony.util.BlacklistUtils;
 
 import android.app.ActivityManagerNative;
 import android.app.Notification;
@@ -475,11 +474,14 @@ public class CallNotifier extends Handler
 
         // Blacklist handling
         String number = c.getAddress();
+        if (TextUtils.isEmpty(number)) {
+            number = Blacklist.PRIVATE_NUMBER;
+        }
         if (DBG) log("Incoming number is: " + number);
         // See if the number is in the blacklist
         // Result is one of: MATCH_NONE, MATCH_LIST or MATCH_REGEX
-        int listType = BlacklistUtils.isListed(mApplication, number, BlacklistUtils.BLOCK_CALLS);
-        if (listType != BlacklistUtils.MATCH_NONE) {
+        int listType = mApplication.blackList.isListed(number);
+        if (listType != Blacklist.MATCH_NONE) {
             // We have a match, set the user and hang up the call and notify
             if (DBG) log("Incoming call from " + number + " blocked.");
             c.setUserData(BLACKLIST);
