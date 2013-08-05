@@ -338,7 +338,7 @@ public class PhoneInterfaceManager extends ITelephony.Stub {
         }
         mPhone.setPreferredNetworkType(network,
                 mMainThreadHandler.obtainMessage(CMD_TOGGLE_2G));
-        Settings.Secure.putInt(mApp.getContentResolver(),
+        android.provider.Settings.Global.putInt(mApp.getContentResolver(),
                 android.provider.Settings.Global.PREFERRED_NETWORK_MODE, network);
     }
 
