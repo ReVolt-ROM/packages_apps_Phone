@@ -14,8 +14,6 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="perm_change_mobile_network">Zmeniť sieť (2G/3G)</string>
-    <string name="perm_change_mobile_network_desc">Aplikácia s týmito povoleniami môže kedykoľvek zmeniť sieť medzi 2G a 3G. 3G je rýchlejšie, viac využíva batériu, a taktiež Vás môže stáť viac peňazí.</string>
     <string name="callUnanswered_forwarded">Hovor presmerovaný</string>
     <string name="mwi_notification_title">Indikátor čakajúcej správy</string>
     <string name="mwi_notification_summary">Zobraziť indikátor čakajúcej správy pre hlasové správy</string>
