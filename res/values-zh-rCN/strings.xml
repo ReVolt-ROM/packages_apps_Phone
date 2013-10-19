@@ -709,11 +709,6 @@
     <string name="transparent_in_call_widget">通话界面透明</string>
     <string name="transparent_in_call_widget_summary">在打入电话界面显示完整的联系人图片</string>
 
-    <!-- Noise suppression -->
-    <string name="noise_suppression_title">降噪</string>
-    <string name="noise_suppression_summary">通话时启用降噪功能</string>
-    <!-- End Noise suppression -->
-
     <!-- Incoming call in background -->
     <string name="bg_incall">后台来电</string>
     <string name="bg_incall_summary">屏幕开启时，将来电界面保留在后台，只显示通知和播放铃声</string>
